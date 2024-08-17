@@ -14,7 +14,7 @@ export default function MainHeader() {
                     <CgMenuGridR className="w-[36px] h-[32px]" color="#9FADBC"/>
                     <div className="w-[24px] h-[24px] bg-bg-skyblue 
                             flex items-center justify-center
-                            cursor-pointer">
+                            cursor-pointer rounded-[3px]">
                         <div className="text-bg-black text-[24px]">+</div>
                     </div>
                 </div>
