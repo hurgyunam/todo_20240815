@@ -13,6 +13,27 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      width: {
+        icon: '24px',
+        todo: '154px'
+      },
+      height: {
+        icon: '24px',
+      },
+      padding: {
+        tiny: '4px',
+        small: '8px',
+        normal: '16px'
+      },
+      margin: {
+        tiny: '4px',
+        small: '8px',
+        normal: '16px'
+      },
+      rounded: {
+        small: '3px',
+        normal: '6px',
+      }
     },
     colors: {
       bg: {

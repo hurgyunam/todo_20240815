@@ -15,15 +15,15 @@ export default function Kanban() {
     ];
 
     return (
-        <div className="flex flex-col w-[154px]">
-            <div className="py-[16px] px-[8px] text-font-gray bg-bg-black rounded-[6px]">
+        <div className="flex flex-col w-todo">
+            <div className="py-normal px-small text-font-gray bg-bg-black rounded-normal">
                 백로그 2
             </div>
-            <div className="p-[4px] mt-[16px] text-font-gray bg-bg-black rounded-[6px]
+            <div className="p-tiny mt-normal text-font-gray bg-bg-black rounded-normal
                         grid grid-rows-1 gap-[6px]">
                 {
                     todos.map(todo => (
-                        <div className="p-[8px] flex flex-col bg-bg-lightgray rounded-[3px]"
+                        <div className="p-small flex flex-col bg-bg-lightgray rounded-small"
                             key={todo.key}>
                             <div>
                                 {todo.title}
