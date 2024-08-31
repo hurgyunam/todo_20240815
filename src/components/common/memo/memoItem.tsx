@@ -44,13 +44,13 @@ export default function MemoItem({memos}: {memos: Memo[]}) {
                                 </div>
                             </div>
                         </div>
-                        {
+                        {/* {
                             isOpen && (
                                 <div className={`flex flex-col ml-[14px]`}>
                                     <MemoItem memos={memo.children} />
                                 </div>
                             )
-                        }
+                        } */}
                     </div>
                 ))
             }

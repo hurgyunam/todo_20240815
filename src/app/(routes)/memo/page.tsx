@@ -4,30 +4,33 @@ import { observer } from "mobx-react";
 import { FaPlus } from "react-icons/fa";
 import Memo from "@/data/memo";
 import MemoItem from "@/components/common/memo/memoItem";
+import { getDoc, doc } from 'firebase/firestore'
+import { db } from "@/config/firebase";
+import { useState } from "react";
 
-export default observer(function Home() {
-    const rootMemos: Memo[] = [
-      new Memo(
-        '1234',
-        'TEST',
-        [
-          new Memo(
-            '13123',
-            'TEST2',
-            [
-              new Memo(
-                '13123',
-                'TEST3',
-                [
-                  
-                ]
-              )
-            ]
-          )
-        ]
-      )
-    ];
 
+async function getMemos() {
+  const memos = doc(db, 'memos', 'root');
+  const memosSnapshot = await getDoc(memos);
+
+  if(!memosSnapshot.exists()) {
+    return null;
+  }
+
+  console.log(memosSnapshot);
+
+  return {
+    
+    ...memosSnapshot.data()
+  };
+}
+
+
+export default function Home() {
+    const [rootMemos, setRootMemos] = useState<Memo[]>([]);
+
+    getMemos();
+    
     return (
       <div className="bg-bg-gray h-screen">
         <div className="flex flex-col w-[300px] p-[24px]">
@@ -47,4 +50,4 @@ export default observer(function Home() {
         </div>
       </div>
     );
-  })
+  }
