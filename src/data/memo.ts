@@ -9,4 +9,8 @@ export default class Memo {
         this.title = title;
         this.children = children ?? [];
     }
+
+    public addChild(child: Memo) {
+        this.children.push(child);
+    }
 }
