@@ -4,7 +4,7 @@
 import { observer } from "mobx-react";
 import { FaPlus } from "react-icons/fa";
 import Memo from "@/data/memo";
-import MemoItem from "@/components/common/memo/memoItem";
+import MemoItem from "@/components/memo/memoItem";
 import { getDoc, doc } from 'firebase/firestore'
 import { db } from "@/config/firebase";
 import { useState } from "react";
