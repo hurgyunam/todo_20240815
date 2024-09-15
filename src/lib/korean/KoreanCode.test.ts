@@ -1,55 +1,105 @@
-import KoreanCode from "./KoreanCode";
 
 
+// it("가 between 나", () => {
+//     const length = '나'.charCodeAt(0) - '가'.charCodeAt(0);
 
-it("test consonant last", () => {
-    const last = 'ㅎ'.charCodeAt(0);
-    const lastNext = String.fromCharCode(last + 1);
+//     for(let i = 0; i < length; i++) {
+//         console.log(String.fromCharCode('가'.charCodeAt(0) + i))
+//     }
+// });
 
-    expect(lastNext).toBe('ㅏ');
+it("basis formula", () => {
+    const length = '까'.charCodeAt(0) - '가'.charCodeAt(0);
 
-})
+    const results = [];
+    for(let i = 0; i < 19; i++) {
+        results.push(String.fromCharCode('가'.charCodeAt(0) + i * length))
+    }
 
-it("test vowel order", () => {
-    const code = 'ㅏ'.charCodeAt(0);
-    const expected = ['ㅏ', 'ㅐ', 'ㅑ', 'ㅒ', 'ㅓ', 'ㅔ', 'ㅕ', 'ㅖ', 'ㅗ', 'ㅘ', 'ㅙ', 'ㅚ', 'ㅛ', 'ㅜ', 'ㅝ', 'ㅞ', 'ㅟ', 'ㅠ'];
+    const expected = ['가', '까', '나', '다','따', '라', '마', '바','빠', '사', '싸', '아','자', '짜', '차', '카', '타', '파', '하'];
 
     for(let i = 0; i < expected.length; i++) {
-        const nextText = String.fromCharCode(code + i);
-
-        console.log(i, nextText, expected[i]);
-        
-        expect(nextText).toBe(expected[i]);
-    }
-})
-
-it("test vowel last", () => {
-    const last = 'ㅣ'.charCodeAt(0);
-    const lastNext = String.fromCharCode(last + 1);
-
-    expect(lastNext).toBe('ㅤ');
-})
-
-it("test last consonant mixture last", () => { // 받침 테스트
-    const params = ['ㄱ', 'ㄱ', 'ㅏ', 'ㅏ', 'ㄱ', 'ㅅ', 'ㄹ', 'ㅁ'];
-
-    const codes = params.map(param => new KoreanCode(param));
-
-    const canMerges = [];
-
-    for(let i = 0; i < codes.length - 1; i++) {
-        canMerges.push(codes[i].canMerge(codes[i+1]));
+        expect(results[i]).toBe(expected[i])
     }
 
-    expect(canMerges).toStrictEqual([true, true, false, true, true, false, true])
-})
+});
+
+// it("between 가 and 갸", () => {
+//     const length = '갸'.charCodeAt(0) - '가'.charCodeAt(0);
+
+//     const results = [];
+//     for(let i = 0; i < length; i++) {
+//         results.push(String.fromCharCode('가'.charCodeAt(0) + i))
+//     }
+
+//     console.log(results);
+// });
 
 
-it("test char split no final consonant raw version", () => {
-    const params = ['ㄴ', 'ㅏ', 'ㅁ', 'ㅜ'].map(param => new KoreanCode(param));
+it("secondary formula", () => {
+    const length = '개'.charCodeAt(0) - '가'.charCodeAt(0);
 
-    expect(params[0].consonantStart).toBe('나');
-    expect(params[3].origin).toBe("ㅜ");
+    const results = [];
+    for(let i = 0; i < 21; i++) {
+        results.push(String.fromCharCode('가'.charCodeAt(0) + i * length))
+    }
+
+    const expected = 
+    [
+        '가', '개', '갸', '걔',
+        '거', '게', '겨', '계',
+        '고', '과', '괘', '괴',
+        '교', '구', '궈', '궤',
+        '귀', '규', '그', '긔',
+        '기'
+    ]
+
+    for(let i = 0; i < expected.length; i++) {
+        expect(results[i]).toBe(expected[i])
+    }
+});
+
+it("final formula", () => {
+    const length = '개'.charCodeAt(0) - '가'.charCodeAt(0);
+
+    const results = [];
+    for(let i = 0; i < length; i++) {
+        results.push(String.fromCharCode('가'.charCodeAt(0) + i))
+    }
+
+    const expected = [
+      '가', '각', '갂', '갃', '간', '갅', '갆',
+      '갇', '갈', '갉', '갊', '갋', '갌', '갍',
+      '갎', '갏', '감', '갑', '값', '갓', '갔',
+      '강', '갖', '갗', '갘', '같', '갚', '갛',
+    ]
+
+    for(let i = 0; i < expected.length; i++) {
+        expect(results[i]).toBe(expected[i])
+    }
+});
+
+it("map control", () => {
+    const test = "ㄷㅐ";
+
+    const consonant = ['ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
+    const vowel = ['ㅏ', 'ㅐ', 'ㅑ', 'ㅒ','ㅓ', 'ㅔ', 'ㅕ', 'ㅖ','ㅗ', 'ㅘ', 'ㅙ', 'ㅚ', 'ㅛ', 'ㅜ', 'ㅝ', 'ㅞ','ㅟ', 'ㅠ', 'ㅡ', 'ㅢ', 'ㅣ'];
+    const finalConsonant = ['가', '각', '갂', '갃', '간', '갅', '갆','갇', '갈', '갉', '갊', '갋', '갌', '갍','갎', '갏', '감', '갑', '값', '갓', '갔','강', '갖', '갗', '갘', '같', '갚', '갛'];
+
     
-    expect(params[2].mergeConsonant(params[3].vowelIndex)).toBe('무');
+    const consonantIndex = consonant.indexOf(test[0]);
+
+    expect(consonantIndex).toBe(3);
+
+    const result = '가'.charCodeAt(0) + consonantIndex * ('까'.charCodeAt(0) - '가'.charCodeAt(0));
+
+    expect(String.fromCharCode(result)).toBe('다')
+
+    const vowelIndex = vowel.indexOf(test[1]);
+
+    expect(vowelIndex).toBe(1);
+
+    const result2 = result + vowelIndex * ('개'.charCodeAt(0) - '가'.charCodeAt(0));
+
+    expect(String.fromCharCode(result2)).toBe('대');
 })
